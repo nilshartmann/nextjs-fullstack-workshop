@@ -1,6 +1,6 @@
 # Workshop: Fullstack Anwendungen mit React und Next.js
 
-Dieses Repository (https://github.com/nilshartmann/nextjs-workshop) enthält den Source-Code für die Beispiel-Anwendung sowie den Workspace für unsere Übungen. Bitte klone dir das Repository lokal auf deinen Computer.
+Dieses Repository (https://github.com/nilshartmann/nextjs-fullstack-workshop) enthält den Source-Code für die Beispiel-Anwendung sowie den Workspace für unsere Übungen. Bitte klone dir das Repository lokal auf deinen Computer.
 
 Im folgenden findest Du beschrieben, wie du den Workspace einrichtest und die Anwendung für die Übung startest.
 

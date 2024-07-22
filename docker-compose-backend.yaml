@@ -12,7 +12,21 @@ services:
       - 'SPRING_DATASOURCE_USERNAME=myuser'
       - 'SPRING_DATASOURCE_PASSWORD=secret'
       - 'GENERATE_OPEN_API_DOC_ON_STARTUP_ENABLED=false'
+#      - 'SPRING_PROFILES_ACTIVE=security'
     ports:
       - '8080:8080'
     depends_on:
       - postgres
+#  keycloak:
+#    image: quay.io/keycloak/keycloak:23.0.2
+#    ports:
+#      - "8200:8080"
+#    environment:
+#      KEYCLOAK_ADMIN: admin
+#      KEYCLOAK_ADMIN_PASSWORD: admin
+#    volumes:
+#      - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-import.json:ro
+#    command:
+#      - start-dev
+#      - --import-realm
+

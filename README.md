@@ -56,3 +56,4 @@ pnpm dev:clean
 | Next.js Workspace           | http://localhost:8100                       |
 | Java Backend (API)          | http://localhost:8080                       |
 | Swagger UI                  | http://localhost:8080/swagger-ui/index.html |
+| Keycloak                    | http://localhost:8200                       |

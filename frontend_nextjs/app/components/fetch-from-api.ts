@@ -1,5 +1,8 @@
 import { EndpointByMethod, EndpointParameters } from "./api-types.ts";
 import { z, ZodNever } from "zod";
+import { recipifyBackendUrl } from "@/app/components/recipify-backend-url.ts";
+import { isAuthEnabled } from "@/app/components/auth/is-auth-enabled.ts";
+import { getAuthHeader } from "@/app/components/auth/get-auth-header.ts";
 
 function replacePlaceholders(
   text: string,
@@ -10,11 +13,8 @@ function replacePlaceholders(
   });
 }
 
-const recipifyBackend = process.env.RECIPIFY_BACKEND ?? "http://localhost:8080";
-console.log("Recipify Backend", recipifyBackend);
-
 function resolveUrl(path: string, params: EndpointParameters | undefined) {
-  const url = `${recipifyBackend}${path}`;
+  const url = `${recipifyBackendUrl()}${path}`;
 
   if (!params) {
     return url;
@@ -66,21 +66,42 @@ export async function fetchFromApi<EP extends Endpoints>(
 
   const nextTags = tags ? { next: { tags } } : {};
 
-  return fetch(url, {
+  const headers = new Headers();
+  headers.append("content-type", "application/json");
+  if (isAuthEnabled()) {
+    const authHeader = await getAuthHeader();
+    if (authHeader) {
+      headers.append("Authorization", authHeader);
+    }
+  }
+
+  const response = await fetch(url, {
     method: endpoint.method.value,
-    headers: {
-      "content-type": "application/json",
-    },
+    headers,
     body: payload,
     ...nextTags,
-  })
-    .then((response) => response.json())
-    .then((unknownResponse) => {
-      // make sure response returned from server is valid according
-      // to schema
-      const validatedResponse = endpoint.response.parse(unknownResponse);
-      return validatedResponse;
-    });
+  });
+
+  const isJsonContentType =
+    response.headers.get("Content-Type") === "application/json";
+
+  const unknownResponse = await (isJsonContentType
+    ? response.json()
+    : response.text());
+
+  if (!response.ok) {
+    console.warn(
+      "Response from Backend not ok:",
+      response.status,
+      response.statusText,
+    );
+    console.warn("Body", unknownResponse);
+    throw new Error("Response from backend not ok!");
+  }
+  // make sure response returned from server is valid according
+  // to schema
+  const validatedResponse = endpoint.response.parse(unknownResponse);
+  return validatedResponse;
 }
 
 export async function fetchNullableFromApi<EP extends Endpoints>(

@@ -285,6 +285,30 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PageResponseFeedback'
+  /api/ping/money:
+    get:
+      tags:
+      - ping-controller
+      operationId: money
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/ping/hello:
+    get:
+      tags:
+      - ping-controller
+      operationId: hello
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
 components:
   schemas:
     NewFeedback:
@@ -399,9 +423,9 @@ components:
       properties:
         id:
           type: string
-        title:
-          type: string
         mealType:
+          type: string
+        title:
           type: string
     CategoryDto:
       required:

@@ -1,14 +1,15 @@
 import FeedbackList from "./FeedbackList.tsx";
-import { fetchFeedback } from "@/app/components/queries.ts";
+import { GetRecipeFeedbacksResponse } from "@/app/components/api-types.ts";
 
 type FeedbackListProps = {
-  recipeId: string;
+  feedbacksPromise: Promise<GetRecipeFeedbacksResponse>;
 };
 export default async function FeedbackListLoader({
-  recipeId,
+  feedbacksPromise,
 }: FeedbackListProps) {
   console.log("FeedbackListLoader", Date.now());
-  const data = await fetchFeedback(recipeId);
+  // const data = await fetchFeedback(recipeId);
+  const data = await feedbacksPromise;
 
   return <FeedbackList feedbacks={data.feedbacks} />;
 }

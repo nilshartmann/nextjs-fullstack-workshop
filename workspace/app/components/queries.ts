@@ -9,7 +9,6 @@ import {
   getEndpointConfig,
 } from "@/app/components/fetch-from-api.ts";
 import {
-  recipesPerPage,
   slowDown_AddFeedback,
   slowDown_GetFeedbacks,
   slowDown_GetRecipe,
@@ -18,17 +17,18 @@ import {
 } from "@/app/demo-config.tsx";
 
 export function fetchRecipes(
-  page: number = 0,
+  page: string | number = 0,
   orderBy?: "time" | "likes",
   ids?: string[],
 ): Promise<PageResponseRecipeDto> {
+  page = typeof page === "string" ? parseInt(page) : page;
   const idsString = ids?.join(",");
   const result = fetchFromApi(
     getEndpointConfig("get", "/api/recipes"),
     {
       query: {
         page,
-        size: recipesPerPage,
+        size: 45,
         sort: orderBy,
         ids: idsString,
         slowdown: slowDown_GetRecipeList,

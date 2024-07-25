@@ -7,7 +7,8 @@ type RecipeCardProps = {
   recipe: RecipeDto;
 };
 
-export default function RecipeCard({ recipe }: RecipeCardProps) {
+export default async function RecipeCard({ recipe }: RecipeCardProps) {
+  // const feedback = (await feedback).recipe;
   return (
     <div
       className={
@@ -27,11 +28,11 @@ export default function RecipeCard({ recipe }: RecipeCardProps) {
           </Link>
           <H1 className={"mb-4 mt-4 font-space font-bold"}>
             <Link
-              prefetch={true}
+              prefetch={false}
               href={`/recipes/${recipe.id}`}
               className={"hover:text-orange_2 hover:underline"}
             >
-              {recipe.title}
+              {recipe.title} !!
             </Link>
           </H1>
           <div className={"text mt-2 font-inter text-gray-500"}>

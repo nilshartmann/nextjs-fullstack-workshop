@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { GlobalPageLayout } from "@/app/components/layout/GlobalPageLayout";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Recipify Next.js demo",
@@ -24,6 +25,9 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <GlobalPageLayout>{children}</GlobalPageLayout>
+        <div className={"mt-4"}>
+          <Link href={"/"}>Zur Homepage</Link>
+        </div>
       </body>
     </html>
   );

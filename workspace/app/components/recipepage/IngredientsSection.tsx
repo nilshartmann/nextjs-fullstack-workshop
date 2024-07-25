@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Ingredient } from "@/app/components/api-types.ts";
 import IngredientList from "@/app/components/recipepage/IngredientsList.tsx";
+import { Timer } from "@/app/components/Timer.tsx";
 
 type IngredientsProps = {
   ingredients: Ingredient[];
@@ -12,6 +13,7 @@ export default function IngredientsSection({ ingredients }: IngredientsProps) {
   return (
     <>
       <div className={"mb-8 mt-8 flex items-center justify-between"}>
+        <Timer />
         <h2 className={"font-space text-3xl font-bold"}>Ingredients</h2>
         <div
           className={

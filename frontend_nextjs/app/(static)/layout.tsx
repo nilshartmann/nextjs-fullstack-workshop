@@ -5,5 +5,7 @@ type RecipesLayoutProps = {
 };
 
 export default function RecipesLayout({ children }: RecipesLayoutProps) {
-  return <div className={"container mx-auto flex-grow"}>{children}</div>;
+  return (
+    <div className={"container mx-auto flex-grow border-2 p-4"}>{children}</div>
+  );
 }

@@ -4,22 +4,14 @@ import { Button } from "../Button.tsx";
 import ButtonBar from "../ButtonBar.tsx";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import {
-  feedbackFormAction,
-  FeedbackFormState,
-} from "@/app/components/material/feedback-actions.ts";
+import { FeedbackFormState } from "@/app/components/material/feedback-actions.ts";
 import RatingInput from "@/app/components/recipepage/RatingInput.tsx";
-import { useFormState } from "react-dom";
 
 type AddFeedbackFormProps = {
   recipeId: string;
 };
 
 export function AddFeedbackForm({ recipeId }: AddFeedbackFormProps) {
-  // useFormState will be replaced by useActionState
-  //   useActionState also has a isPending information
-  const [currentState, formAction] = useFormState(feedbackFormAction, {});
-
   return (
     <FeedbackForm
       recipeId={recipeId}

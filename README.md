@@ -19,7 +19,7 @@ docker-compose -f docker-compose-backend.yaml up -d
 # Öffnen in der IDE / Editor
 
 > [!IMPORTANT]  
-> Bitte nur das Verzeichnis `workspace` im Editor öffnen
+> Bitte nur das Verzeichnis `workspace` im Editor öffnen.
 
 Ihr könnt auch beide Frontends im Editor öffnen (das "fertige" und den Workspace), dann benutzt unterschiedliche Editor-Instanzen.
 

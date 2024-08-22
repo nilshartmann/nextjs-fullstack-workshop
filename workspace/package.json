@@ -16,13 +16,11 @@
     "openapi:watch": "onchange -i ../backend/generated-api-doc.yaml -- pnpm openapi:generate"
   },
   "dependencies": {
-    "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.2",
     "date-fns": "^3.0.6",
     "next": "15.0.0-rc.0",
     "next-auth": "5.0.0-beta.19",
     "react": "19.0.0-rc-3563387fe3-20240621",
-    "react-bootstrap": "^2.10.4",
     "react-dom": "19.0.0-rc-3563387fe3-20240621",
     "tailwind-merge": "^2.2.0",
     "zod": "^3.22.4",
